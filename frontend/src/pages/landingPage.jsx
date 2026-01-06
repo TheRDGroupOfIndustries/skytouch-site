@@ -11,6 +11,7 @@ import PlacementRate from "../components/placementRateTwo"
 import BrandPartners from "../components/brandPartners"
 import SkyTouch from "../components/academyAdvantage"
 import Testimonials from "../components/testimonials"
+import Career from "../components/transformYourCareer"
 import Footer from "../components/footer";
 
 function LandingPage() {
@@ -23,11 +24,13 @@ function LandingPage() {
 
     <Alumni />
 
-    <Workshops />
-
     <Fourth />
 
+    <Workshops />
+
     <SkyTouch />
+
+    <Career />
 
     <PremiumCourses />
 
