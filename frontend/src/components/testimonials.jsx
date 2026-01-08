@@ -47,9 +47,7 @@ const Testimonials = () => {
       
       {/* Heading */}
       <div className="max-w-3xl mx-auto text-center text-white mb-12">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold uppercase">
-          Hear it from the ambitious people
-        </h2>
+        
         <p className="text-sm sm:text-base text-blue-100 mt-4 leading-relaxed">
           Don't just take our word for it. Here's what our successful graduates have to say
           <span className="hidden md:inline"><br /></span>

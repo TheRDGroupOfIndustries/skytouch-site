@@ -1,3 +1,22 @@
+import { motion } from "framer-motion";
+import S1 from "../assets/s1.png";
+import S2 from "../assets/s2.png";
+import S3 from "../assets/s3.png";
+import S4 from "../assets/s4.png";
+
+const thumbnails = [S1, S2, S3, S4];
+
+const cardIdle = {
+  animate: {
+    y: [0, -6, 0],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+};
+
 export default function PremiumCourses() {
   const courses = Array(6).fill({
     level: "Intermediate",
@@ -22,30 +41,47 @@ export default function PremiumCourses() {
       }}
     >
       <div className="max-w-7xl mx-auto text-center text-white">
-        
+
         {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+        <h2 className="text-3xl font-bold mb-4">
           Our Premium Courses
         </h2>
 
-        <p className="text-sm sm:text-base max-w-3xl mx-auto mb-12 opacity-90">
-          Choose from our comprehensive range of digital marketing courses
-          designed by industry experts. Each course includes hands-on projects,
-          real-world case studies, and career support.
+        <p className="text-sm max-w-3xl mx-auto mb-12 opacity-90">
+          Industry-designed programs with hands-on projects and career support.
         </p>
 
         {/* Courses Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white text-gray-800 rounded-2xl shadow-lg overflow-hidden"
+              variants={cardIdle}
+              animate="animate"
+              whileHover={{
+                y: -14,
+                scale: 1.03,
+                boxShadow: "0px 25px 50px rgba(0,0,0,0.25)",
+              }}
+              className="bg-white text-gray-800 rounded-2xl overflow-hidden cursor-pointer"
             >
-              {/* Image */}
-              <div className="relative bg-gray-100 h-44 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow">
+              {/* Thumbnail / Video BG */}
+              <div
+                className="relative h-44 bg-cover bg-center flex items-center justify-center"
+                style={{
+                  backgroundImage: `url(${thumbnails[index % thumbnails.length]})`,
+                }}
+              >
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/35" />
+
+                {/* Play button */}
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  className="relative z-10 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg"
+                >
                   ▶
-                </div>
+                </motion.div>
               </div>
 
               {/* Content */}
@@ -54,7 +90,7 @@ export default function PremiumCourses() {
                   {course.level}
                 </span>
 
-                <h3 className="font-bold text-base sm:text-lg mb-3 leading-snug">
+                <h3 className="font-bold text-lg mb-3 leading-snug">
                   {course.title}
                 </h3>
 
@@ -74,19 +110,15 @@ export default function PremiumCourses() {
                   ))}
                 </ul>
 
-                {/* PRICE + BUTTON */}
-                <div className="mt-4">
-                  <span className="block text-xl font-extrabold text-left text-[#1D3FFF] mb-3">
-                    {course.price}
-                  </span>
+                <span className="block text-xl font-extrabold text-[#1D3FFF] mb-3">
+                  {course.price}
+                </span>
 
-                  <button className="w-full bg-gradient-to-r from-[#1D3FFF] to-[#040C82] text-white text-sm py-3 rounded-lg hover:opacity-90 transition">
-                    Enroll Now
-                  </button>
-                </div>
-
+                <button className="w-full bg-gradient-to-r from-[#1D3FFF] to-[#040C82] text-white text-sm py-3 rounded-lg hover:opacity-90 transition">
+                  Enroll Now
+                </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
