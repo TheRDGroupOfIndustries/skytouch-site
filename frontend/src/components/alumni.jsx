@@ -9,7 +9,6 @@ const alumniData = [
   { name: "Person Z", company: "Microsoft", role: "Backend Engineer", image: PersonZ },
 ];
 
-/* Heading animation */
 const headingVariants = {
   hidden: { opacity: 0, x: -60 },
   visible: {
@@ -19,7 +18,6 @@ const headingVariants = {
   },
 };
 
-/* Paragraph animation */
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -29,7 +27,6 @@ const textVariants = {
   },
 };
 
-/* Cards animation */
 const cardVariants = {
   hidden: { opacity: 0, y: 60 },
   visible: {
@@ -41,19 +38,21 @@ const cardVariants = {
 
 export default function Alumni() {
   return (
-    <section className="relative w-full px-6 py-20 font-inter overflow-hidden">
+    <section className="relative w-full px-4 sm:px-6 py-20 font-inter overflow-hidden">
 
       {/* BACKGROUND STRIP */}
-      <div className="
-        absolute left-0 right-0
-        top-[52%]
-        h-24 sm:h-28 md:h-32
-        bg-gradient-to-r from-[#0A77FF] to-[#012A7C]
-        z-0
-      " />
+      <div
+        className="
+          absolute left-0 right-0
+          top-[52%]
+          h-24 sm:h-28 md:h-32
+          bg-gradient-to-r from-[#0A77FF] to-[#012A7C]
+          z-0
+        "
+      />
 
       {/* Heading */}
-      <div className="text-center max-w-3xl mx-auto relative z-10 overflow-hidden">
+      <div className="text-center max-w-3xl mx-auto relative z-10">
         <motion.h2
           variants={headingVariants}
           initial="hidden"
@@ -78,20 +77,27 @@ export default function Alumni() {
       </div>
 
       {/* Cards */}
-      <div className="relative z-10 mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {alumniData.map((alumni, idx) => (
+      <div
+        className="
+          relative z-10 mt-16
+          grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+          gap-8
+          max-w-6xl mx-auto
+          place-items-center
+        "
+      >
+        {alumniData.map((alumni) => (
           <motion.div
             key={alumni.name}
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            whileHover={{
-              y: -14,
-              transition: { duration: 0.3 },
-            }}
+            whileHover={{ y: -12 }}
             className="
-              w-[355.86px] h-[500px]
+              w-full
+              max-w-[360px]
+              h-[500px]
               rounded-2xl
               bg-white
               shadow-md hover:shadow-2xl
@@ -109,12 +115,13 @@ export default function Alumni() {
             </div>
 
             {/* Content */}
-            <div className="
-              flex flex-col items-center text-center px-6 py-8
-              bg-gradient-to-r from-[#0A77FF] to-[#012A7C]
-              text-white flex-1
-              transition-all duration-300
-            ">
+            <div
+              className="
+                flex flex-col items-center text-center px-6 py-8
+                bg-gradient-to-r from-[#0A77FF] to-[#012A7C]
+                text-white flex-1
+              "
+            >
               <p className="text-base font-semibold tracking-wide">
                 {alumni.name}
               </p>
