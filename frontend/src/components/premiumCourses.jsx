@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import S1 from "../assets/s1.png";
@@ -9,7 +10,7 @@ const thumbnails = [S1, S2, S3, S4];
 
 const cardIdle = {
   animate: {
-    y: -6,
+    y: [-6, 0, -6],
     transition: {
       yoyo: Infinity,
       duration: 2,
@@ -24,16 +25,22 @@ const sectionVariants = {
 };
 
 function AnimatedSection({ children, id }) {
-  // Check if device is mobile
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <motion.section
       id={id}
       className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-16 font-inter"
       variants={sectionVariants}
-      initial="hidden"
-      animate={isMobile ? "visible" : undefined} // mobile always visible
+      initial={isMobile ? "visible" : "hidden"}
+      animate="visible"
       whileInView={isMobile ? undefined : "visible"}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -151,7 +158,11 @@ export default function PremiumCourses() {
               key={index}
               variants={cardIdle}
               animate="animate"
-              whileHover={{ y: -14, scale: 1.03, boxShadow: "0px 25px 50px rgba(0,0,0,0.25)" }}
+              whileHover={{
+                y: -14,
+                scale: 1.03,
+                boxShadow: "0px 25px 50px rgba(0,0,0,0.25)",
+              }}
               className="bg-white text-gray-800 rounded-2xl overflow-hidden cursor-pointer"
             >
               <div
