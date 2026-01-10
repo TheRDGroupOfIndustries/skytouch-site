@@ -1,42 +1,49 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SkyLogo from "../assets/skylogo.png";
 import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const links = ["Home", "Courses", "Workshops", "About", "Contact Us"];
 
-  // Mapping of link text → section id
   const linkToId = {
     Home: "home",
     Courses: "courses",
     Workshops: "workshops",
-    About: "footer",      // <-- Now About scrolls to footer
+    About: "footer",
     "Contact Us": "footer",
   };
 
-  // Scroll function
   const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (!section) {
-      console.warn("Section not found:", id);
-      return;
+    const scroll = () => {
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const yOffset = -96;
+      const y =
+        section.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    };
+
+    // If not on landing page, navigate first
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(scroll, 100);
+    } else {
+      scroll();
     }
-
-    const yOffset = -96; // navbar height
-    const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
   };
 
   return (
     <header className="w-full fixed top-0 z-50 bg-black text-white">
-      <div className="w-full px-8 py-4 flex items-center justify-between">
+      <div className="w-full px-8 py-1 flex items-center justify-between">
 
         {/* Logo */}
         <div

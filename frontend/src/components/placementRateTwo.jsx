@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import CountUp from "./CountUp";
+import CountUp from "../utils/CountUp";
 
 export default function StatsBanner() {
   const bannerRef = useRef(null);

@@ -13,34 +13,50 @@ const images = [G1, G2, G3, G4, G5, G6, G7, G8];
 
 export default function GallerySection() {
   return (
-    <section className="w-full py-20 px-6 bg-white">
+    <section className="w-full py-20 px-6 bg-white overflow-hidden">
       <div className="mx-auto max-w-5xl text-center">
 
-        <h2 className="text-lg font-semibold">
-          Our <span className="text-blue-600 font-bold">Gallery</span>
-        </h2>
+        {/* Heading (UPDATED) */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
+            Our <span className="text-blue-600">Gallery</span>
+          </h2>
 
-        <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 place-items-center">
+          <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+            A glimpse into our learning environment, workshops, and the moments
+            that shape our community.
+          </p>
+        </motion.div>
+
+        {/* Images */}
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 place-items-center">
           {images.map((img, idx) => (
             <motion.div
               key={idx}
-              initial={{ scale: 1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
               animate={{
-                scale: [1, 1.04, 1],
                 y: [0, -4, 0],
               }}
-              transition={{
-                duration: 3 + idx * 0.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
               whileHover={{
-                scale: 1.15,
-                y: -10,
-                boxShadow: "0px 20px 35px rgba(0,0,0,0.2)",
+                scale: 1.12,
+                y: -8,
+                boxShadow: "0px 18px 30px rgba(0,0,0,0.18)",
               }}
-              className="h-28 w-24 sm:h-32 sm:w-28 md:h-36 md:w-32 
-                         rounded-xl overflow-hidden bg-white cursor-pointer"
+              className="
+                h-32 w-32
+                sm:h-36 sm:w-36
+                md:h-44 md:w-44
+                rounded-xl overflow-hidden
+                bg-white cursor-pointer
+              "
             >
               <img
                 src={img}

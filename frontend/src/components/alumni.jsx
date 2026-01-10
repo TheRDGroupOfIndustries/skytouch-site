@@ -21,7 +21,7 @@ const cardVariants = {
 export default function Alumni() {
   return (
     <section className="relative w-full px-6 py-20 font-inter overflow-hidden">
-      
+
       {/* BACKGROUND STRIP */}
       <div
         className="
@@ -33,22 +33,27 @@ export default function Alumni() {
         "
       />
 
-      {/* Heading */}
-      <div className="text-center max-w-3xl mx-auto relative z-10 font-inter">
-        <h2 className="text-2xl font-extrabold">
+      {/* Heading (UPDATED) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center max-w-3xl mx-auto relative z-10"
+      >
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
           Our Alumni Leading the{" "}
           <span className="text-blue-600">Digital World</span>
         </h2>
 
-        <p className="mt-3 text-sm text-black">
-          Join thousands of successful professionals who have transformed their careers with
-          <br />
-          our expert-led programs and are now working at top companies worldwide.
+        <p className="text-sm sm:text-base text-gray-600">
+          Join thousands of successful professionals who have transformed their careers
+          with our expert-led programs and are now working at top companies worldwide.
         </p>
-      </div>
+      </motion.div>
 
       {/* Cards */}
-      <div className="relative z-10 mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto font-inter">
+      <div className="relative z-10 mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {alumniData.map((alumni, idx) => (
           <motion.div
             key={alumni.name}
