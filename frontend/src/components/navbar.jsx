@@ -70,7 +70,7 @@ export default function Navbar() {
           <img
             src={SkyLogo}
             alt="Sky Touch Academy"
-            className="h-20 w-15 mb-2 -translate-y-1"
+            className="h-20 w-15 mb-2 translate-y-1"
           />
           <span className="text-lg font-medium leading-none -mt-1">
             Sky Touch Academy
