@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import S1 from "../assets/s1.png";
 import S2 from "../assets/s2.png";
@@ -7,15 +7,22 @@ import S4 from "../assets/s4.png";
 
 const thumbnails = [S1, S2, S3, S4];
 
+// Simpler animation compatible with mobile
 const cardIdle = {
   animate: {
-    y: [0, -6, 0],
+    y: -6,
     transition: {
-      duration: 5,
-      repeat: Infinity,
+      yoyo: Infinity,
+      duration: 2,
       ease: "easeInOut",
     },
   },
+};
+
+// Section variants for framer-motion
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
 };
 
 function AnimatedSection({ children, id }) {
@@ -23,6 +30,7 @@ function AnimatedSection({ children, id }) {
     <motion.section
       id={id}
       className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-16 font-inter"
+      variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.25 }}
@@ -154,6 +162,7 @@ export default function PremiumCourses() {
                 className="relative h-44 bg-cover bg-center flex items-center justify-center"
                 style={{
                   backgroundImage: `url(${thumbnails[index % thumbnails.length]})`,
+                  backgroundColor: "#ccc", // fallback for mobile
                 }}
               >
                 <div className="absolute inset-0 bg-black/35" />
@@ -174,7 +183,7 @@ export default function PremiumCourses() {
                   {course.title}
                 </h3>
 
-                <div className="flex items-center text-xs text-gray-500 mb-4 gap-3">
+                <div className="flex items-center text-xs text-gray-500 mb-4 gap-3 flex-wrap">
                   <span>⏱ {course.duration}</span>
                   <span>⭐ {course.rating}</span>
                   <span>{course.students}</span>
@@ -210,7 +219,6 @@ export default function PremiumCourses() {
           ))}
         </div>
 
-        {/* Explore All Courses */}
         <div className="mt-14">
           <button
             onClick={() => {
