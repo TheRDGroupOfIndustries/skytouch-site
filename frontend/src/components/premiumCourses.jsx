@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import S1 from "../assets/s1.png";
 import S2 from "../assets/s2.png";
@@ -7,51 +6,6 @@ import S3 from "../assets/s3.png";
 import S4 from "../assets/s4.png";
 
 const thumbnails = [S1, S2, S3, S4];
-
-const cardIdle = {
-  animate: {
-    y: [-6, 0, -6],
-    transition: {
-      yoyo: Infinity,
-      duration: 2,
-      ease: "easeInOut",
-    },
-  },
-};
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
-
-function AnimatedSection({ children, id }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth < 640);
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return (
-    <motion.section
-      id={id}
-      className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-16 font-inter"
-      variants={sectionVariants}
-      initial={isMobile ? "visible" : "hidden"}
-      animate="visible"
-      whileInView={isMobile ? undefined : "visible"}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      style={{
-        background: "linear-gradient(180deg, #1D3FFF 0%, #040C82 100%)",
-      }}
-    >
-      {children}
-    </motion.section>
-  );
-}
 
 export default function PremiumCourses() {
   const navigate = useNavigate();
@@ -144,7 +98,13 @@ export default function PremiumCourses() {
   ];
 
   return (
-    <AnimatedSection id="courses">
+    <section
+      id="courses"
+      className="scroll-mt-24 w-full px-4 sm:px-6 lg:px-8 py-16 font-inter"
+      style={{
+        background: "linear-gradient(180deg, #1D3FFF 0%, #040C82 100%)",
+      }}
+    >
       <div className="max-w-7xl mx-auto text-center text-white">
         <h2 className="text-3xl font-bold mb-4">Our Premium Courses</h2>
 
@@ -154,15 +114,8 @@ export default function PremiumCourses() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={cardIdle}
-              animate="animate"
-              whileHover={{
-                y: -14,
-                scale: 1.03,
-                boxShadow: "0px 25px 50px rgba(0,0,0,0.25)",
-              }}
               className="bg-white text-gray-800 rounded-2xl overflow-hidden cursor-pointer"
             >
               <div
@@ -173,12 +126,9 @@ export default function PremiumCourses() {
                 }}
               >
                 <div className="absolute inset-0 bg-black/35" />
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  className="relative z-10 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg"
-                >
+                <div className="relative z-10 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                   ▶
-                </motion.div>
+                </div>
               </div>
 
               <div className="p-6 text-left">
@@ -214,7 +164,7 @@ export default function PremiumCourses() {
                   Enroll Now
                 </button>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -230,6 +180,6 @@ export default function PremiumCourses() {
           </button>
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }
