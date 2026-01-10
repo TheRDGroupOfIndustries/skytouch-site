@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 import G1 from "../assets/g1.jpeg";
 import G2 from "../assets/g2.jpeg";
