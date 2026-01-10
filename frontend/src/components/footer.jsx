@@ -1,23 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Add this
+import { useNavigate } from "react-router-dom";
 import { Facebook, Linkedin, Instagram, Twitter } from "lucide-react";
 import SkyLogo from "../assets/skylogo.png";
 
 const Footer = () => {
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate();
 
-  // Smooth scroll function
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (!section) return;
 
-    const yOffset = -96; // header height offset
+    const yOffset = -96;
     const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-  // ✅ Central handler for Quick Links
   const handleNavClick = (link) => {
     if (link === "Contact Us") {
       navigate("/contactus");
@@ -25,7 +23,6 @@ const Footer = () => {
       return;
     }
 
-    // Convert link to corresponding id
     const idMap = {
       Courses: "courses",
       Workshops: "workshops",
@@ -37,13 +34,29 @@ const Footer = () => {
     if (targetId) scrollToSection(targetId);
   };
 
+  // ✅ Updated Support Links handler
+  const handleSupportClick = (link) => {
+    const routeMap = {
+      "Help Center": "/help-center",
+      "Student Portal": "/student-portal",
+      "Career Services": "/career-services",
+      "Privacy Policy": "/privacy-policy",
+      "Terms of Service": "/terms-of-service",
+    };
+
+    const route = routeMap[link];
+    if (route) {
+      navigate(route);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <footer
       id="footer"
       className="scroll-mt-24 bg-gradient-to-b from-slate-900 to-slate-950
                  text-slate-300 w-full font-inter"
     >
-      {/* Main Content */}
       <div className="w-full px-6 lg:px-20 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-center md:text-left">
 
@@ -66,7 +79,6 @@ const Footer = () => {
               careers with our expert-led programs.
             </p>
 
-            {/* Social Icons */}
             <div className="flex gap-4 pt-2 justify-center md:justify-start">
               <a href="#" className="hover:text-white transition">
                 <Facebook size={18} />
@@ -106,28 +118,24 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-5">Support</h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition">Help Center</a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">Student Portal</a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">Career Services</a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">Terms of Service</a>
-              </li>
+              {["Help Center", "Student Portal", "Career Services", "Privacy Policy", "Terms of Service"].map(
+                (link) => (
+                  <li key={link}>
+                    <button
+                      onClick={() => handleSupportClick(link)}
+                      className="hover:text-white transition"
+                    >
+                      {link}
+                    </button>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-slate-800">
         <div className="px-6 lg:px-20 py-4 text-center md:text-left">
           <p className="text-xs text-slate-500">
