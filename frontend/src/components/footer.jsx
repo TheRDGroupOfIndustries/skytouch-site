@@ -26,7 +26,7 @@ const Footer = () => {
     const idMap = {
       Courses: "courses",
       Workshops: "workshops",
-      "Free Courses": "freecourses",
+      "Free Courses": "courses",
       "About Us": "about",
     };
 
