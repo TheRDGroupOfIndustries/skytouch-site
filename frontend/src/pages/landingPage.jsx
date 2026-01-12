@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 
 import Navbar from "../components/navbar";
 import Hero from "../components/heroSection";
@@ -18,6 +18,7 @@ import Career from "../components/nextStep";
 import Galley from "../components/ourGallery";
 import VideoTestimonials from "../components/videoTestimonials";
 import Footer from "../components/footer";
+import Mentors from "../components/ourMentors";
 
 import AnimatedSection from "../utils/AnimatedSection";
 
@@ -26,7 +27,6 @@ export default function LandingPage() {
 
   useEffect(() => {
     const id = location.state?.scrollTo;
-
     if (!id) return;
 
     if (id === "top") {
@@ -37,36 +37,38 @@ export default function LandingPage() {
     const section = document.getElementById(id);
     if (!section) return;
 
-    const yOffset = -96;
-    const y =
-      section.getBoundingClientRect().top +
-      window.pageYOffset +
-      yOffset;
-
-    window.scrollTo({ top: y, behavior: "smooth" });
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [location]);
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className="overflow-x-hidden">
+      <m.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="overflow-x-hidden scroll-smooth"
+      >
         <Navbar />
 
         <Hero />
 
-        <AnimatedSection id="alumni">
+        <Mentors />
+
+        <AnimatedSection id="alumni" className="scroll-mt-24">
           <Alumni />
         </AnimatedSection>
 
         <Fourth />
 
-        <AnimatedSection id="workshops">
+        <AnimatedSection id="workshops" className="scroll-mt-24">
           <Workshops />
         </AnimatedSection>
 
         <SkyTouch />
         <Career />
 
-        <AnimatedSection id="gallery">
+        <AnimatedSection id="gallery" className="scroll-mt-24">
           <Galley />
         </AnimatedSection>
 
@@ -78,20 +80,20 @@ export default function LandingPage() {
         <PlacementRate />
         <BrandPartners />
 
-        <AnimatedSection id="video-testimonials">
+        <AnimatedSection id="video-testimonials" className="scroll-mt-24">
           <VideoTestimonials />
         </AnimatedSection>
 
-        <AnimatedSection id="hiring-partners">
+        <AnimatedSection id="hiring-partners" className="scroll-mt-24">
           <HiringPartner />
         </AnimatedSection>
 
         <AdvancedTraining />
 
-        <AnimatedSection id="contact">
+        <AnimatedSection id="contact" className="scroll-mt-24">
           <Footer />
         </AnimatedSection>
-      </div>
+      </m.div>
     </LazyMotion>
   );
 }

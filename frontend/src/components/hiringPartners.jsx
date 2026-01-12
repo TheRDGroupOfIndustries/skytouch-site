@@ -58,59 +58,35 @@ export default function HiringPartners() {
 
       {/* Partners Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        {partners.map((partner) => {
-          const randomDelay = Math.random() * 2;
-          const randomRotate = Math.random() * 15 - 7;
-
-          return (
-            <motion.div
-              key={partner.name}
-              initial={{ opacity: 0, y: 25, rotate: 0 }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      y: [0, -6, 0, 4, 0],
-                      rotate: [
-                        0,
-                        randomRotate,
-                        -randomRotate,
-                        randomRotate / 2,
-                        0,
-                      ],
-                    }
-                  : { opacity: 1, y: 0, rotate: 0 }
-              }
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: isInView ? Infinity : 0,
-                delay: randomDelay,
-                ease: "easeInOut",
-              }}
-              whileHover={{ scale: 1.15, rotate: randomRotate / 2 }}
-              className="flex flex-col items-center justify-center
-                         bg-gray-50 rounded-lg py-6 cursor-default"
+        {partners.map((partner) => (
+          <motion.div
+            key={partner.name}
+            initial={{ opacity: 0, y: 25 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.15 }}
+            className="flex flex-col items-center justify-center
+                       bg-gray-50 rounded-lg py-6 cursor-default"
+          >
+            <div
+              className="w-12 h-12 flex items-center justify-center
+                         bg-gray-100 rounded-md mb-3"
             >
-              <div
-                className="w-12 h-12 flex items-center justify-center
-                           bg-gray-100 rounded-md mb-3"
-              >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="w-7 h-7 sm:w-10 sm:h-10 object-contain"
-                />
-              </div>
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="w-7 h-7 sm:w-10 sm:h-10 object-contain"
+              />
+            </div>
 
-              <p className="text-sm font-medium text-gray-800">
-                {partner.name}
-              </p>
-              <p className="text-xs text-blue-600 mt-1">
-                {partner.openings}
-              </p>
-            </motion.div>
-          );
-        })}
+            <p className="text-sm font-medium text-gray-800">
+              {partner.name}
+            </p>
+            <p className="text-xs text-blue-600 mt-1">
+              {partner.openings}
+            </p>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

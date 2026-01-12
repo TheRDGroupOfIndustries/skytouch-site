@@ -32,20 +32,18 @@ export default function Navbar() {
 
   return (
     <header className="w-full fixed top-0 z-50 bg-black text-white">
-      <div className="w-full px-8 py-1 flex items-center justify-between">
+      <div className="w-full px-8 py-0.5 flex items-center justify-between">
         {/* Logo */}
         <div
-          className="flex flex-col items-center cursor-pointer -mt-2"
-          onClick={() =>
-            navigate("/", { state: { scrollTo: "top" } })
-          }
+          className="flex flex-col items-center cursor-pointer -mt-1"
+          onClick={() => navigate("/", { state: { scrollTo: "top" } })}
         >
           <img
             src={SkyLogo}
             alt="Sky Touch Academy"
-            className="h-20 w-15 mb-2 translate-y-1"
+            className="h-16 w-29 mb-1 translate-y-0.5"
           />
-          <span className="text-lg font-medium leading-none -mt-1">
+          <span className="text-lg font-medium leading-none -mt-0.5">
             Sky Touch Academy
           </span>
         </div>
@@ -67,7 +65,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <button
             onClick={() => navigate("/enroll")}
-            className="px-10 py-3 rounded-xl bg-blue-600 text-sm font-semibold"
+            className="px-10 py-2 rounded-xl bg-blue-600 text-sm font-semibold"
           >
             Enroll Now
           </button>
@@ -83,7 +81,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black px-8 py-6 flex flex-col gap-5">
+        <div className="md:hidden bg-black px-8 py-4 flex flex-col gap-4">
           {links.map((link) => (
             <button
               key={link}
@@ -96,7 +94,7 @@ export default function Navbar() {
 
           <button
             onClick={() => navigate("/enroll")}
-            className="px-10 py-3 rounded-lg bg-blue-600 text-sm font-semibold"
+            className="px-10 py-2 rounded-lg bg-blue-600 text-sm font-semibold"
           >
             Enroll Now
           </button>

@@ -9,18 +9,48 @@ export default function EnrollPage() {
     email: "",
     phone: "",
     course: "",
-    experience: "",
     message: "",
   });
+
+  const [loading, setLoading] = useState(false);
+  const [responseMsg, setResponseMsg] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Enrollment Data:", formData);
-    alert("Enrollment Successful!");
+    setLoading(true);
+    setResponseMsg(null);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setResponseMsg({ type: "success", text: data.message });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          course: "",
+          message: "",
+        });
+      } else {
+        setResponseMsg({ type: "error", text: data.message });
+      }
+    } catch (err) {
+      console.error(err);
+      setResponseMsg({ type: "error", text: "Server error. Please try again." });
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -91,6 +121,18 @@ export default function EnrollPage() {
               Enrollment Form
             </h2>
 
+            {responseMsg && (
+              <p
+                className={`p-3 rounded text-sm ${
+                  responseMsg.type === "success"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
+                }`}
+              >
+                {responseMsg.text}
+              </p>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <input
                 type="text"
@@ -138,19 +180,6 @@ export default function EnrollPage() {
               <option>Email Marketing Automation</option>
             </select>
 
-            <select
-              name="experience"
-              required
-              value={formData.experience}
-              onChange={handleChange}
-              className="border rounded-lg px-4 py-3 text-sm w-full focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Experience Level</option>
-              <option>Beginner</option>
-              <option>Intermediate</option>
-              <option>Advanced</option>
-            </select>
-
             <textarea
               name="message"
               rows="4"
@@ -162,12 +191,15 @@ export default function EnrollPage() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-lg
+              disabled={loading}
+              className={`w-full py-3 rounded-lg
                          bg-gradient-to-r from-[#0A77FF] to-[#012A7C]
                          text-white font-semibold text-sm
-                         hover:opacity-90 transition"
+                         hover:opacity-90 transition ${
+                           loading ? "opacity-50 cursor-not-allowed" : ""
+                         }`}
             >
-              Confirm Enrollment
+              {loading ? "Submitting..." : "Confirm Enrollment"}
             </button>
           </motion.form>
         </div>

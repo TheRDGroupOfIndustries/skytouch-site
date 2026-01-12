@@ -20,7 +20,7 @@ export default function VideoTestimonials() {
           className="text-center max-w-4xl mx-auto text-white"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
-            Hear It From <span className="text-black">Those Who Made It</span>
+            Hear It From <span className="text-white">Those Who Made It</span>
           </h2>
           <p className="text-sm sm:text-base opacity-90">
             Real stories from learners who turned skills into confidence and careers.

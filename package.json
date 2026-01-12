@@ -1,0 +1,24 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000A\u0000s\u0000s\u0000i\u0000g\u0000n\u0000m\u0000e\u0000n\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+  "start": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anush-kumar-mall/Assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/anush-kumar-mall/Assignment/issues"
+  },
+  "homepage": "https://github.com/anush-kumar-mall/Assignment#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

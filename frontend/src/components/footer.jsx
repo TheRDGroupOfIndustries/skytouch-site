@@ -11,7 +11,10 @@ const Footer = () => {
     if (!section) return;
 
     const yOffset = -96;
-    const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    const y =
+      section.getBoundingClientRect().top +
+      window.pageYOffset +
+      yOffset;
 
     window.scrollTo({ top: y, behavior: "smooth" });
   };
@@ -26,15 +29,13 @@ const Footer = () => {
     const idMap = {
       Courses: "courses",
       Workshops: "workshops",
-      "Free Courses": "courses",
-      "About Us": "about",
+      "About Us": "gallery", // ✅ scrolls to gallery now
     };
 
     const targetId = idMap[link];
     if (targetId) scrollToSection(targetId);
   };
 
-  // ✅ Updated Support Links handler
   const handleSupportClick = (link) => {
     const routeMap = {
       "Help Center": "/help-center",
@@ -74,9 +75,9 @@ const Footer = () => {
             </div>
 
             <p className="text-sm leading-relaxed text-slate-400 max-w-md">
-              Empowering professionals with cutting-edge digital marketing skills.
-              Join thousands of successful graduates who have transformed their
-              careers with our expert-led programs.
+              Empowering professionals with digital marketing skills.
+              Learn from industry experts and build real-world expertise
+              that actually moves your career forward.
             </p>
 
             <div className="flex gap-4 pt-2 justify-center md:justify-start">
@@ -99,7 +100,7 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-5">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              {["Courses", "Workshops", "Free Courses", "About Us", "Contact Us"].map(
+              {["Courses", "Workshops", "About Us", "Contact Us"].map(
                 (link) => (
                   <li key={link}>
                     <button
@@ -114,22 +115,26 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support Section */}
+          {/* Support */}
           <div>
             <h4 className="text-white font-semibold mb-5">Support</h4>
             <ul className="space-y-3 text-sm">
-              {["Help Center", "Student Portal", "Career Services", "Privacy Policy", "Terms of Service"].map(
-                (link) => (
-                  <li key={link}>
-                    <button
-                      onClick={() => handleSupportClick(link)}
-                      className="hover:text-white transition"
-                    >
-                      {link}
-                    </button>
-                  </li>
-                )
-              )}
+              {[
+                "Help Center",
+                "Student Portal",
+                "Career Services",
+                "Privacy Policy",
+                "Terms of Service",
+              ].map((link) => (
+                <li key={link}>
+                  <button
+                    onClick={() => handleSupportClick(link)}
+                    className="hover:text-white transition"
+                  >
+                    {link}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
