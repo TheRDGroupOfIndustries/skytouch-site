@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import LandingPage from "./pages/landingPage";
 import AllCourses from "./pages/allCourses";
 import EnrollCourse from "./pages/enrollPage";
@@ -10,11 +11,15 @@ import CareerServices from "./pages/careerPolicy";
 import TermsOfService from "./pages/termsOfServices";
 import StudentPortal from "./pages/studentPortal";
 import HelpCenter from "./pages/helpCenter";
+import AboutUs from "./pages/aboutUs";
 
+import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/courses" element={<AllCourses />} />
@@ -27,16 +32,7 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/student-portal" element={<StudentPortal />} />
         <Route path="/help-center" element={<HelpCenter />} />
-
-
-
-
-
-
-
-
-
-
+        <Route path="/about-us" element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
   );

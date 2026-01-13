@@ -11,30 +11,40 @@ export default function HeroSection() {
   const slides = [Slide1, Slide2, Slide3];
 
   const handleScroll = () => {
-    const scrollX = sliderRef.current.scrollLeft;
+    if (!sliderRef.current) return;
     const width = window.innerWidth;
-    const index = Math.round(scrollX / width);
+    const index = Math.round(
+      sliderRef.current.scrollLeft / width
+    );
     setActive(index);
   };
 
   useEffect(() => {
-    if (sliderRef.current) {
-      sliderRef.current.style.scrollbarWidth = "none"; // Firefox
-      sliderRef.current.style.msOverflowStyle = "none"; // IE 10+
-    }
-  }, []);
+    const interval = setInterval(() => {
+      if (!sliderRef.current) return;
+
+      const width = window.innerWidth;
+      const nextIndex = (active + 1) % slides.length;
+
+      sliderRef.current.scrollTo({
+        left: nextIndex * width,
+        behavior: "smooth",
+      });
+
+      setActive(nextIndex);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [active, slides.length]);
 
   return (
-    <section className="w-full h-screen relative overflow-hidden font-inter">
-      {/* HORIZONTAL SCROLLER */}
+    <section className="w-full h-screen relative overflow-hidden overflow-y-hidden font-inter">
+      {/* SLIDER */}
       <div
         ref={sliderRef}
         onScroll={handleScroll}
-        className="flex w-full h-full overflow-x-scroll scroll-smooth snap-x snap-mandatory"
-        style={{
-          scrollbarWidth: "none", // Firefox
-          msOverflowStyle: "none", // IE 10+
-        }}
+        className="flex w-full h-full overflow-x-scroll snap-x snap-mandatory scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {slides.map((bg, index) => (
           <div
@@ -47,22 +57,27 @@ export default function HeroSection() {
 
             {/* Content */}
             <div className="relative w-full max-w-7xl mx-auto h-full px-4 sm:px-6">
-              {/* Logo Card */}
-              <div className="absolute top-32 md:top-44 right-[-6rem] md:right-[-8rem] bg-gradient-to-r from-[#0A77FF] to-[#012A7C] text-white shadow-2xl px-7 sm:px-9 py-5 sm:py-6">
-                <div className="flex items-center gap-3 sm:gap-4 mr-28">
+              
+              {/* LOGO CARD */}
+              <div className="absolute top-32 md:top-44 right-0 translate-x-8 md:translate-x-12 bg-gradient-to-r from-[#0A77FF] to-[#012A7C] text-white shadow-2xl px-6 sm:px-7 py-5 sm:py-6">
+                <div className="flex items-center gap-3 mr-10">
                   <img
                     src={SkyLogo}
-                    className="h-16 w-30 sm:h-20 sm:w-30"
+                    className="h-16"
                     alt="Sky Touch Academy"
                   />
-                  <div className="flex flex-col">
-                    <p className="text-2xl sm:text-3xl font-inter font-medium">Sky Touch</p>
-                    <p className="text-2xl sm:text-3xl font-inter font-medium">Academy</p>
+                  <div>
+                    <p className="text-2xl sm:text-3xl font-medium">
+                      Sky Touch
+                    </p>
+                    <p className="text-2xl sm:text-3xl font-medium">
+                      Academy
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* CTA */}
+              {/* CTA BUTTONS */}
               <div className="absolute bottom-28 right-20 flex gap-6">
                 <button className="px-10 py-4 rounded-xl border-2 border-blue-500 text-blue-600 text-lg font-semibold bg-white">
                   Free Demo Class
@@ -72,6 +87,7 @@ export default function HeroSection() {
                   Start Learning Today
                 </button>
               </div>
+
             </div>
           </div>
         ))}
@@ -83,18 +99,13 @@ export default function HeroSection() {
           <span
             key={i}
             className={`h-3 w-3 rounded-full transition-all duration-300 ${
-              active === i ? "bg-blue-600 scale-125" : "bg-blue-300"
+              active === i
+                ? "bg-blue-600 scale-125"
+                : "bg-blue-300"
             }`}
           />
         ))}
       </div>
-
-      {/* Hide scrollbar for Webkit */}
-      <style jsx>{`
-        div::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 }

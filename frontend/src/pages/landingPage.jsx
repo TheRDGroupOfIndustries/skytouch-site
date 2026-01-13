@@ -47,6 +47,7 @@ export default function LandingPage() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
         className="overflow-x-hidden scroll-smooth"
       >
         <Navbar />

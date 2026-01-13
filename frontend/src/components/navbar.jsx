@@ -9,33 +9,40 @@ export default function Navbar() {
 
   const links = ["Home", "Courses", "Workshops", "About", "Contact Us"];
 
-  const linkToId = {
+  const scrollLinks = {
     Home: "top",
     Courses: "courses",
     Workshops: "workshops",
-    About: "contact",
   };
 
   const handleNavClick = (link) => {
-    if (link === "Contact Us") {
-      navigate("/contactus");
-      setIsOpen(false);
+    setIsOpen(false);
+
+    // About → About page
+    if (link === "About") {
+      navigate("/about-us");
       return;
     }
 
-    navigate("/", {
-      state: { scrollTo: linkToId[link] },
-    });
+    // Contact Us → Contact page
+    if (link === "Contact Us") {
+      navigate("/contactus");
+      return;
+    }
 
-    setIsOpen(false);
+    // Home / Courses / Workshops → scroll on home page
+    navigate("/", {
+      state: { scrollTo: scrollLinks[link] },
+    });
   };
 
   return (
     <header className="w-full fixed top-0 z-50 bg-black text-white">
       <div className="w-full px-8 py-0.5 flex items-center justify-between">
+        
         {/* Logo */}
         <div
-          className="flex flex-col items-center cursor-pointer -mt-1"
+          className="flex flex-col items-center cursor-pointer mt-2"
           onClick={() => navigate("/", { state: { scrollTo: "top" } })}
         >
           <img
