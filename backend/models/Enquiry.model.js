@@ -51,4 +51,4 @@ const enquirySchema = new mongoose.Schema(
 // Model create karo
 const Enquiry = mongoose.model("Enquiry", enquirySchema);
 
-export default Enquiry;
+export default Enquiry.model.js;

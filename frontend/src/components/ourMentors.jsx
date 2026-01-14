@@ -88,8 +88,7 @@ export default function Alumni() {
             viewport={{ once: true }}
             className="text-sm sm:text-base text-gray-600"
           >
-            Learn from industry experts who have built real-world products and
-            mentored thousands of successful developers.
+            Surpise Guest Sessions by Market Leaders Of Different Industries
           </motion.p>
         </div>
 
