@@ -19,7 +19,6 @@ import Galley from "../components/ourGallery";
 import VideoTestimonials from "../components/videoTestimonials";
 import Footer from "../components/footer";
 import Mentors from "../components/ourMentors";
-import Educators from "../components/educators";
 
 import AnimatedSection from "../utils/AnimatedSection";
 
@@ -56,8 +55,6 @@ export default function LandingPage() {
         <Hero />
 
         <Mentors />
-
-        <Educators/>
 
         <AnimatedSection id="alumni" className="scroll-mt-24">
           <Alumni />

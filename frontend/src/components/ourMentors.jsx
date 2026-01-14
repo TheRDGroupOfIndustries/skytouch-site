@@ -5,21 +5,78 @@ import Mentor3 from "../assets/mentor3.jpg";
 
 const alumniData = [
   {
-    name: "Mentor A",
-    company: "Google",
-    role: "Senior Engineer",
+    name: "Ankit Pandey",
+    role: "Consulting, Mentoring & Training",
     image: Mentor1,
   },
   {
-    name: "Mentor B",
-    company: "Amazon",
-    role: "UI Expert",
+    name: "Geet Tiwari",
+    role: "UGC Content Specialist",
     image: Mentor2,
   },
   {
-    name: "Mentor C",
-    company: "Microsoft",
-    role: "Backend Specialist",
+    name: "Shujat Ali",
+    role: "CV Making & Interview Preparation",
+    image: Mentor3,
+  },
+  {
+    name: "Smita Sahu",
+    role: "CV Making, Interview Prep, PD & Business Communication",
+    image: Mentor1,
+  },
+  {
+    name: "Shivam Rana",
+    role: "Mentorship",
+    image: Mentor2,
+  },
+  {
+    name: "CS Sushant Dhawan",
+    role: "IPR, Trademarking & Company Laws",
+    image: Mentor3,
+  },
+  {
+    name: "Aroma Srivastava",
+    role: "Copywriting",
+    image: Mentor1,
+  },
+  {
+    name: "Narendra Dwivedi",
+    role: "Guest Sessions",
+    image: Mentor2,
+  },
+  {
+    name: "Rohit Verma",
+    role: "Branding Guidelines",
+    image: Mentor3,
+  },
+  {
+    name: "Prashant Goel",
+    role: "Cybersecurity & AI",
+    image: Mentor1,
+  },
+  {
+    name: "Shwetank Bhargava",
+    role: "Advanced SEO & GMB",
+    image: Mentor2,
+  },
+  {
+    name: "Shubham Gupta",
+    role: "Financial Planning for First Salary",
+    image: Mentor3,
+  },
+  {
+    name: "Prashant Gupta",
+    role: "Offline Media Planning",
+    image: Mentor1,
+  },
+  {
+    name: "Ruvaid",
+    role: "Brand & Creative Strategist",
+    image: Mentor2,
+  },
+  {
+    name: "Devesh Chaynani",
+    role: "Basics of Photography & Videography",
     image: Mentor3,
   },
 ];
@@ -42,7 +99,6 @@ const textVariants = {
   },
 };
 
-/* 👇 NEW: container controls children timing */
 const containerVariants = {
   hidden: {},
   visible: {
@@ -65,11 +121,9 @@ const cardVariants = {
 export default function Alumni() {
   return (
     <section className="relative w-full px-4 sm:px-6 lg:px-8 py-20 font-inter overflow-hidden">
-      {/* Background strip */}
-      <div className="absolute left-0 right-0 top-[52%] h-24 sm:h-28 md:h-32 bg-gradient-to-r from-[#0A77FF] to-[#012A7C] z-0 will-change-transform" />
+      <div className="absolute left-0 right-0 top-[52%] h-24 sm:h-28 md:h-32 bg-gradient-to-r from-[#0A77FF] to-[#012A7C] z-0" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Heading */}
         <div className="text-center max-w-3xl mx-auto">
           <motion.h2
             variants={headingVariants}
@@ -92,7 +146,6 @@ export default function Alumni() {
           </motion.p>
         </div>
 
-        {/* Cards */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -104,16 +157,8 @@ export default function Alumni() {
             <motion.div
               key={alumni.name}
               variants={cardVariants}
-              className="
-                w-full max-w-[360px] h-[500px]
-                rounded-2xl bg-white
-                shadow-md hover:shadow-lg
-                transform transition-all duration-300
-                hover:-translate-y-2
-                overflow-hidden
-              "
+              className="w-full max-w-[360px] h-[500px] rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden"
             >
-              {/* Image (no layout shift) */}
               <div className="h-[260px] bg-gray-100">
                 <img
                   src={alumni.image}
@@ -123,21 +168,19 @@ export default function Alumni() {
                 />
               </div>
 
-              {/* Content */}
               <div className="flex flex-col items-center text-center px-6 py-8 bg-gradient-to-r from-[#0A77FF] to-[#012A7C] text-white flex-1">
                 <p className="text-base font-semibold tracking-wide">
                   {alumni.name}
                 </p>
 
                 <p className="mt-1 text-sm opacity-85">
-                  {alumni.role} @ {alumni.company}
+                  {alumni.role}
                 </p>
 
                 <div className="w-10 h-[1px] bg-white/40 my-5" />
 
                 <p className="text-[13px] leading-relaxed opacity-90 max-w-[260px]">
-                  I help students build real-world skills and crack top tech
-                  jobs.
+                  Guiding learners with practical, industry-focused knowledge.
                 </p>
               </div>
             </motion.div>
