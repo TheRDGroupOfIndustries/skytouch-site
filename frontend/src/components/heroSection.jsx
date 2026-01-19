@@ -13,9 +13,7 @@ export default function HeroSection() {
   const handleScroll = () => {
     if (!sliderRef.current) return;
     const width = window.innerWidth;
-    const index = Math.round(
-      sliderRef.current.scrollLeft / width
-    );
+    const index = Math.round(sliderRef.current.scrollLeft / width);
     setActive(index);
   };
 
@@ -78,7 +76,7 @@ export default function HeroSection() {
               </div>
 
               {/* CTA BUTTONS */}
-              <div className="absolute bottom-28 right-20 flex gap-6">
+              <div className="absolute bottom-28 left-1/2 -translate-x-1/2 flex gap-6 md:right-20 md:left-auto md:translate-x-0">
                 <button className="px-10 py-4 rounded-xl border-2 border-blue-500 text-blue-600 text-lg font-semibold bg-white">
                   Free Demo Class
                 </button>
@@ -99,9 +97,7 @@ export default function HeroSection() {
           <span
             key={i}
             className={`h-3 w-3 rounded-full transition-all duration-300 ${
-              active === i
-                ? "bg-blue-600 scale-125"
-                : "bg-blue-300"
+              active === i ? "bg-blue-600 scale-125" : "bg-blue-300"
             }`}
           />
         ))}

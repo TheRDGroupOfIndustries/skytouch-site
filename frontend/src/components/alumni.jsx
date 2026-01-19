@@ -19,12 +19,12 @@ export default function Alumni() {
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
-            Our Alumni Leading the{" "}
-            <span className="text-blue-600">Digital World</span>
+            From Learners to {" "}
+            <span className="text-blue-600">Industry Leaders</span>
           </h2>
 
           <p className="text-sm sm:text-base text-gray-600">
-            Join thousands of successful professionals who have transformed their careers.
+            Thousands of professionals have accelerated their careers with our expert training and now work across top global organizations.
           </p>
         </div>
 

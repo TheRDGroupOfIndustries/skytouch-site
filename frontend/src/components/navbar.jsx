@@ -18,19 +18,16 @@ export default function Navbar() {
   const handleNavClick = (link) => {
     setIsOpen(false);
 
-    // About → About page
     if (link === "About") {
       navigate("/about-us");
       return;
     }
 
-    // Contact Us → Contact page
     if (link === "Contact Us") {
       navigate("/contactus");
       return;
     }
 
-    // Home / Courses / Workshops → scroll on home page
     navigate("/", {
       state: { scrollTo: scrollLinks[link] },
     });
@@ -38,7 +35,7 @@ export default function Navbar() {
 
   return (
     <header className="w-full fixed top-0 z-50 bg-black text-white">
-      <div className="w-full px-8 py-0.5 flex items-center justify-between">
+      <div className="w-full px-4 py-0.5 flex items-center justify-between">
         
         {/* Logo */}
         <div
@@ -48,9 +45,9 @@ export default function Navbar() {
           <img
             src={SkyLogo}
             alt="Sky Touch Academy"
-            className="h-16 w-29 mb-1 translate-y-0.5"
+            className="h-12 w-20 mb-1 translate-y-0.5" // compact logo for mobile
           />
-          <span className="text-lg font-medium leading-none -mt-0.5">
+          <span className="text-sm font-medium leading-none -mt-0.5">
             Sky Touch Academy
           </span>
         </div>
@@ -68,7 +65,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Enroll */}
+        {/* Desktop Enroll */}
         <div className="hidden md:block">
           <button
             onClick={() => navigate("/enroll")}
@@ -88,12 +85,12 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black px-8 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-black px-4 py-3 flex flex-col gap-3 transition-all duration-300">
           {links.map((link) => (
             <button
               key={link}
               onClick={() => handleNavClick(link)}
-              className="text-left text-base hover:text-blue-400"
+              className="text-left text-sm hover:text-blue-400"
             >
               {link}
             </button>
@@ -101,7 +98,7 @@ export default function Navbar() {
 
           <button
             onClick={() => navigate("/enroll")}
-            className="px-10 py-2 rounded-lg bg-blue-600 text-sm font-semibold"
+            className="w-full px-6 py-1.5 rounded-lg bg-blue-600 text-sm font-semibold"
           >
             Enroll Now
           </button>
